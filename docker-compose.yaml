@@ -7,7 +7,7 @@ services:
       - '${GITLAB_SSH_PORT:-22}:22'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://${LOCAL_IP}:${GITLAB_HTTP_PORT:-80}'
+        external_url 'http://0.0.0.0:${GITLAB_HTTP_PORT:-80}'
         gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_SSH_PORT:-22}
     volumes:
       - ./config:/etc/gitlab
