@@ -2,12 +2,13 @@ services:
   gitlab:
     image: 'gitlab/gitlab-ce'
     container_name: gitlab-server
+    hostname: gitlab-server
     ports:
       - '${GITLAB_HTTP_PORT:-80}:80'
       - '${GITLAB_SSH_PORT:-22}:22'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://0.0.0.0:${GITLAB_HTTP_PORT:-80}'
+        external_url 'http://gitlab-server:${GITLAB_HTTP_PORT:-80}'
         gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_SSH_PORT:-22}
     volumes:
       - ./config:/etc/gitlab
